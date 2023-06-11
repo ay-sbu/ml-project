@@ -1,0 +1,98 @@
+
+
+create virtual environment:
+	$ python -m venv <venv_name>
+	
+activate virtual environment in windows:
+	$ <venv_name>\Scripts\activate
+
+installing selenium:
+	$(<venv_name>) pip install selenium
+	
+
+
+* for working with selenium we need a driver for a browser
+	like chrome or firefox or safari or edge. so we should 
+	download the driver (note the driver version should be the same
+	version and type of your browser). then you need to add that in your 
+	environment variables (in windows).
+
+
+adding path to environment variable by python:
+	code:
+		import os
+		os.environ['PATH'] += <path_as_string>
+
+
+
+make driver from selenium.webdriver:
+	code:
+		driver = webdriver.Chrome()
+
+
+we can access any element in DOM tree of a url!:
+	code:
+		<element_name> = driver.find_element(<find_by_what>, <identifier>)
+	example:
+		my_element = driver.find_element(By.CSS_SELECTOR, 'li[data-name="Friends.S01E01.720p-LegalDL.mkv"]')
+
+* when you find an element in DOM tree and access to it 
+	now you can do many things to it for example you can click on it!!!
+
+* if "find_element" method can't find the element it raise error and 
+	you should handle it by try-except block.
+	
+* we should wait for browser to load the site.
+
+
+* "find_element" method just return first matched element,
+	and if exist nothing return error.
+	"find_elements" method return a list of all matched elements,
+	and if exist nothing return empty list.
+
+
+	
+implicitly wait:
+	code:
+		driver.implicitly_wait(<time_in_seconds>)
+		
+* "implicitly_wait" can be useful when certain elements on the webpage
+	are not available immediately and need some time to load, and if
+	after that time that element does not exist we have error!
+	
+explict wait:
+	code:
+		from selenium.webdriver.support import expected_conditions as ec
+		WebDriverWait(driver, 30).until(
+			ec.text_to_be_present_in_element(
+				(By.CLASS_NAME, 'download-statusbar'),
+				"Complete!"
+			)
+		)
+		
+* difference between implicit vs explict wait is that 
+	in implicit we want just element exist but in explict we 
+	want an specific conditions to arrive.
+
+getting element text:
+	code:
+		my_element.text
+
+clik on element:
+	code:
+		my_element.click()
+
+sending key:
+	code:
+		my_element.send_keys(<value>)
+		
+* you can get text of an element also you can get the 
+	value of an attribute of an element when you have the element.
+example:
+	result = text_input.get_attribute('value')
+another example:
+	result = my_element.get_attribute('innerHTML')
+
+	
+* very practical CSS selector:
+	<tag_name>[<attribute_name>="<attribute_value>"]
