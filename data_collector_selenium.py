@@ -44,7 +44,6 @@ links = links_str.split('\n\n')
 
 founded_titles = []
 
-# to now: 0 - len(links)
 start = 0
 end = 1100
 
