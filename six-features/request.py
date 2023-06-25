@@ -1,5 +1,6 @@
 import requests
 import openpyxl
+import time
 
 # torob api base url
 base_url = 'https://api.torob.com/v4/base-product/details-log-click/?prk='
@@ -29,17 +30,18 @@ column_number = {
 
 # iterate on all links
 for i in range(len(links)):
+    # time.sleep(1)
     print()
     print('link ', str(i))
-
-    # write link in first column
-    sheet.cell(row=i+1, column=column_number['link']).value = links[i]
 
     try:
         link_parts = links[i].split('/')
         link_id = link_parts[4]
         
         url = base_url + link_id
+
+        # write link in first column
+        sheet.cell(row=i+1, column=column_number['link']).value = url
 
         resp = requests.get(url=url)
         data = resp.json() 
@@ -49,6 +51,15 @@ for i in range(len(links)):
         for attribute in attributes:
             if attribute in column_number:
                 sheet.cell(row=i+1, column=column_number[attribute]).value = attributes[attribute]
+
+        if 'price' in data:
+            sheet.cell(row=i+1, column=column_number['price']).value = data['price']
+        elif 'min_price' in data:
+            sheet.cell(row=i+1, column=column_number['price']).value = data['min_price']
+        else:
+            print('price not found')
+            sheet.cell(row=i+1, column=column_number['price']).value = 'not found'
+
 
     except Exception as e:
         print()
