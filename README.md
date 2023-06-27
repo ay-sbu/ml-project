@@ -35,7 +35,10 @@ We scrap Laptops information from torob site then we create a model for predict 
 pip install -r requirements.txt
 ```
 
+#### Dataset is here: 
+[Link](https://drive.google.com/file/d/1QkwIJoJXBs8gXQY6zVDUEVL4ajDoNwrl/view?usp=sharing)
 
+#### Run from model file to see result!
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -66,6 +69,7 @@ Don't forget to give the project a star! Thanks again!
 ## Contact
 
 Reyhaneh Naseri Moghadam - [Email](mailto:rh.moghadam80@gmail.com)
+
 Abbas Yazdanmehr - [Telegram](https://t.me/Abbas_Yazdanmehr) - [Email](abbas.yazdanmehr1@gmail.com)
 
 Project Link: [https://github.com/ay-sbu/ml-project](https://github.com/ay-sbu/ml-project)
